@@ -1,5 +1,5 @@
 $(document).ready(function(){
-console.log("hey, i'm working!")
+// console.log("hey, i'm working!")
 
 });
 
