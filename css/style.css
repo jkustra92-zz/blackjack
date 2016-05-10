@@ -1,35 +1,44 @@
 #start {
-
 }
 
-div {
+#start-screen{
+  text-align: center;
+  margin-left: 5em;
+}
+
+#game-container {
   display: inline-block;
   text-align: center;
+  margin-top: 2em;
+  margin-left: 20em;
 }
 
 #player-spot {
   background-color: red;
   width: 500px;
   height: 200px;
-  margin-right: 100px;
+  display: inline-block;
+  margin-right: 50px;
 }
 
 #dealer-spot {
   background-color: blue;
   width: 500px;
   height: 200px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  display: inline-block;
 }
 
 #bank {
   background-color: green;
   height: 100px;
   width: 100px;
+  display: inline-block;
+  margin-right: 53px;
 }
 
 #deck {
   background-color: pink;
+  display: inline-block;
   height: 300px;
   width: 200px;
 }

@@ -1,5 +1,8 @@
 // console.log("hey");
 
+//honestly this document is just for planning out the logic without DOM manipulation.
+//for the most part.
+//most of this code will be used in the final product unless otherwise stated.
 
 //===========================
 // making the deck
@@ -70,9 +73,31 @@ var player = {
   bet: ""
 }
 
-function askForName(){
-  var playerName = prompt("what is your name?");
-  player.name = playerName;
+function startGame(){
+  $("#start").remove();
+  $("#start-screen").append("<button>");
+  $("button").attr("id", "reset").text("reset");                                                 
+  // $("#reset").click(restartGame);
+  askForName();
+//  askForBet();
 }
-askForName();
-console.log(player);
+
+function askForName(){
+  $("#start-screen").append("<p>");
+  $("p").append("<input>").attr("id", "text-box")
+  $("#text-box").attr("type","text");
+  $("input").attr("placeholder", "enter your name");
+  $("p").append("<button>submit</button>").attr("id", "submit");
+  $("#submit").attr("type", "submit");
+  $("#submit").click(obtainName)
+}
+
+function obtainName(){
+  console.log("oh hey girl")
+}
+
+function begin(){
+  $("#start").click(startGame);
+}
+
+begin();
