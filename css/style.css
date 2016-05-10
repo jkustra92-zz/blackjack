@@ -1,0 +1,35 @@
+#start {
+
+}
+
+div {
+  display: inline-block;
+  text-align: center;
+}
+
+#player-spot {
+  background-color: red;
+  width: 500px;
+  height: 200px;
+  margin-right: 100px;
+}
+
+#dealer-spot {
+  background-color: blue;
+  width: 500px;
+  height: 200px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+#bank {
+  background-color: green;
+  height: 100px;
+  width: 100px;
+}
+
+#deck {
+  background-color: pink;
+  height: 300px;
+  width: 200px;
+}
