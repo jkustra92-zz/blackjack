@@ -11,7 +11,7 @@
 
 // var suits = ["hearts", "clubs", "spades", "diamonds"];
 // var names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "King", "Queen", "Jack"];
-// var values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+// var values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11];
 
 // console.log(suits);
 // console.log(names);
@@ -67,37 +67,63 @@
 // getting player info
 //===========================
 
-var player = {
-  name: "",
-  totalMoney: 1000,
-  bet: ""
-}
+// var player = {
+//   name: "",
+//   totalMoney: 1000,
+//   bet: ""
+// }
 
-function startGame(){
-  $("#start").remove();
-  $("#start-screen").append("<button>");
-  $("button").attr("id", "reset").text("reset");                                                 
-  // $("#reset").click(restartGame);
-  askForName();
-//  askForBet();
-}
+// function startGame(){
+//   $("#start").remove();
+//   $("#start-screen").append("<button>");
+//   $("button").attr("id", "reset").text("reset");                                                 
+//   // $("#reset").click(restartGame);
+//   askForName();
+// }
 
-function askForName(){
-  $("#start-screen").append("<p>");
-  $("p").append("<input>").attr("id", "text-box")
-  $("#text-box").attr("type","text");
-  $("input").attr("placeholder", "enter your name");
-  $("p").append("<button>submit</button>").attr("id", "submit");
-  $("#submit").attr("type", "submit");
-  $("#submit").click(obtainName)
-}
+// function askForName(){
+//   $("#start-screen").append("<p>");
+//   $("p").append("<input>")
+//   $("input").attr("id", "name-box")
+//   $("#name-box").attr("type","text");
+//   $("#name-box").attr("placeholder", "enter your name");
+//   var $submitButton = $("<button>submit</button>");
+//   $submitButton.attr("id", "submit");
+//   $submitButton.attr("type", "submit")
+//   $("p").append($submitButton);
+//   $submitButton.click(obtainName) 
+// }
 
-function obtainName(){
-  console.log("oh hey girl")
-}
+// function obtainName(){
+//   player.name = $("#name-box").val();
+//   askForBet();
+// }
 
-function begin(){
-  $("#start").click(startGame);
-}
+// function askForBet(){
+//   $("p").remove();
+//   $("#start-screen").append("<p>");
+//   $("p").append("<input>")
+//   $("input").attr("id", "bet-box")
+//   $("#bet-box").attr("type","text");
+//   $("#bet-box").attr("placeholder", "enter your bet");
+//   var $submitButton2 = $("<button>submit</button>");
+//   $submitButton2.attr("id", "submit2");
+//   $submitButton2.attr("type", "submit")
+//   $("p").append($submitButton2);
+//   $submitButton2.click(obtainBet)
+// }
+
+// function obtainBet(){
+//   player.bet = $("#bet-box").val();
+//   console.log(player);
+// }
+
+// function begin(){
+//   $("#start").click(startGame);
+// }
 
 begin();
+
+//===========================
+// 
+//===========================

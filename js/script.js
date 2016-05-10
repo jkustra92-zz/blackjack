@@ -5,11 +5,11 @@ $(document).ready(function(){
 
 function makeCards(){ //use a couple arrays and a forEach to add all the required object key/value pairs. 
                       //also use images (sprites?) and add ids to them to get the image. give them all a class
-                      //to show the back of the card before it is flipped.
+                      //to show the back of the card before it is flipped. XXXXXX
                       //as an object is made, push it into the deck array. eeeyyyyy.
 };
 
-function shuffleCards(){ //use Durstenfeld shuffle!! :D
+function shuffleCards(){ //use Durstenfeld shuffle!! :D XXXX
 
 };
 
