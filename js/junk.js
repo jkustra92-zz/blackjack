@@ -83,73 +83,76 @@ var dealer = {
   total: ""
 }
 
-// function startGame(){
-//   $("#start").remove();
-//   $("#start-screen").append("<button>");
-//   $("button").attr("id", "reset").text("reset");                                                 
-//   // $("#reset").click(restartGame);
-//   askForName();
-// }
+function startGame(){
+  $("#start").remove();
+  $("#start-screen").append("<button>");
+  $("button").attr("id", "reset").text("reset");                                                 
+  // $("#reset").click(restartGame);
+  askForName();
+}
 
-// function askForName(){
-//   addNameTextInput();
-//   addNameSubmitButton(); 
-// }
+function askForName(){
+  addNameTextInput();
+  addNameSubmitButton(); 
+}
 
-// function addNameTextInput(){
-//   $("#start-screen").append("<p>");
-//   $("p").append("<input>")
-//   $("input").attr("id", "name-box")
-//   $("#name-box").attr("type","text");
-//   $("#name-box").attr("placeholder", "enter your name");
-// }
+function addNameTextInput(){
+  $("#start-screen").append("<p>");
+  $("p").append("<input>")
+  $("input").attr("id", "name-box")
+  $("#name-box").attr("type","text");
+  $("#name-box").attr("placeholder", "enter your name");
+}
 
-// function addNameSubmitButton(){
-//   var $submitButton = $("<button>submit</button>");
-//   $submitButton.attr("id", "submit");
-//   $submitButton.attr("type", "submit")
-//   $("p").append($submitButton);
-//   $submitButton.click(obtainName) 
-// }
+function addNameSubmitButton(){
+  var $submitButton = $("<button>submit</button>");
+  $submitButton.attr("id", "submit");
+  $submitButton.attr("type", "submit")
+  $("p").append($submitButton);
+  $submitButton.click(obtainName) 
+}
 
-// function obtainName(){
-//   player.name = $("#name-box").val();
-//   askForBet();
-// }
+function obtainName(){
+  player.name = $("#name-box").val();
+  askForBet();
+}
 
-// function askForBet(){
-//   addBetTextInput();
-//   addBetSubmitButton();
-// }
+function askForBet(){
+  addBetTextInput();
+  addBetSubmitButton();
+}
 
-// function addBetTextInput(){
-//   $("p").remove();
-//   $("#start-screen").append("<p>");
-//   $("p").append("<input>")
-//   $("input").attr("id", "bet-box")
-//   $("#bet-box").attr("type","text");
-//   $("#bet-box").attr("placeholder", "enter your bet");
-// }
+function addBetTextInput(){
+  $("p").remove();
+  $("#start-screen").append("<p>");
+  $("p").append("<input>")
+  $("input").attr("id", "bet-box")
+  $("#bet-box").attr("type","text");
+  $("#bet-box").attr("placeholder", "enter your bet");
+}
 
-// function addBetSubmitButton(){
-//   var $submitButton2 = $("<button>submit</button>");
-//   $submitButton2.attr("id", "submit2");
-//   $submitButton2.attr("type", "submit")
-//   $("p").append($submitButton2);
-//   $submitButton2.click(obtainBet)
-// }
+function addBetSubmitButton(){
+  var $submitButton2 = $("<button>submit</button>");
+  $submitButton2.attr("id", "submit2");
+  $submitButton2.attr("type", "submit")
+  $("p").append($submitButton2);
+  $submitButton2.click(obtainBet)
+}
 
-// function obtainBet(){
-//   player.bet = $("#bet-box").val();
-//   player.totalMoney = player.totalMoney - player.bet;
-//   console.log(player);
-// }
+function obtainBet(){
+  player.bet = $("#bet-box").val();
+  player.totalMoney = player.totalMoney - player.bet;
+}
 
-// function begin(){
-//   $("#start").click(startGame);
-// }
+function begin(){
+  $("#start").click(startGame);
+}
 
-// begin();
+begin();
+
+function addDeck(){
+  
+}
 
 //=============================================
 // give the player and dealer their first card
@@ -187,10 +190,10 @@ function initialCards(){
 function addCard(currentPlayer){ //can use this as the generic "get a card from the deck" function
   var card = deck.pop();
   currentPlayer["cards"].push(card)
-  console.log(currentPlayer["cards"])
+  // console.log(currentPlayer["cards"])
 }
 
-initialCards();
+// initialCards();
 // console.log(player["cards"][0]["value"])
 // console.log(player["cards"][1]["value"])
 // console.log(player["cards"][2]["value"]) //this should return undefined bc it's out of the array bounds
@@ -220,7 +223,7 @@ function aceCheck(currentPlayer, total){
     currentPlayer.total = finalTotal
   }else{
     var finalTotal = total;
-    console.log(finalTotal)
+    // console.log(finalTotal)
     currentPlayer.total = finalTotal
   }
 }
@@ -233,12 +236,11 @@ function evaluatePlayerTotal(){
   if (player.total > 21){
     console.log("bust")
   }else{
-    hitOrPass();
+    hitOrStay();
   }
 }
 
-function hitOrPass(){
-
+function hitOrStay(){
   //something to ask the player what they would like to do (front end?)
   //front end function adding prompt and two buttons
   //depending on which one is clicked, something different will happen
@@ -251,7 +253,6 @@ function hitPlayer(){
 
 function passPlayer(){
   getTotal(dealer);
-  getTotal(dealer);
   evaluateDealerTotal();
 }
 
@@ -259,29 +260,35 @@ function evaluateDealerTotal(){
   if (dealer.total > 21){
     console.log("bust")
   }else if (dealer.total < 17){
-    dealerHit();
+    hitDealer();
   }else{
-    totalCompare();
+    compareTotals();
   }
 }
-
-
-function totalCompare(){
-  if (dealer.total === player.total){
-    console.log("tie");
-    neutralMonies();
-  }else if ()
-}
-
-//================================
-// options from switch statement
-//================================
 
 function hitDealer(){
   addCard(dealer);
   getTotal(dealer);
   evaluateDealerTotal();
 }
+
+
+function compareTotals(){
+  if (dealer.total === player.total){
+    console.log("tie");
+    neutralMonies();
+  }else if (dealer.total > player.total){
+    console.log("dealer wins");
+    loseMonies();
+  }else{
+    console.log("player wins")
+    winMonies();
+  }
+}
+
+//=================
+// money functions
+//=================
 
 function winMonies(){
   player.totalMonies = player.totalMonies + (player.bet * 2)
@@ -302,7 +309,4 @@ function gamePlay(){
 }
 
 gamePlay();
-
-
-
 
