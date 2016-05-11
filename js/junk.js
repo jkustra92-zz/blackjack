@@ -71,7 +71,7 @@ shuffle(deck);
 
 var player = {
   name: "",
-  totalMoney: 1000,
+  totalMonies: 1000,
   bet: "",
   cards: [],
   total: ""
@@ -187,12 +187,17 @@ function initialCards(){
 function addCard(currentPlayer){ //can use this as the generic "get a card from the deck" function
   var card = deck.pop();
   currentPlayer["cards"].push(card)
+  console.log(currentPlayer["cards"])
 }
 
 initialCards();
 // console.log(player["cards"][0]["value"])
 // console.log(player["cards"][1]["value"])
 // console.log(player["cards"][2]["value"]) //this should return undefined bc it's out of the array bounds
+
+//=============================================
+// total the cards and adjust for ace value
+//=============================================
 
 function getTotal(currentPlayer){
   var totalArray = [];
@@ -220,65 +225,83 @@ function aceCheck(currentPlayer, total){
   }
 }
 
-function totalCompare(){
-  switch (true){
+//=====================
+// evaluate the player
+//=====================
 
-    case player.total<21 && dealer.total<21:
-    console.log("keep playing!")
-    break;
+function evaluatePlayerTotal(){
+  if (player.total > 21){
+    console.log("bust")
+  }else{
+    hitOrPass();
+  }
+}
 
-    case player.total === dealer.total:
-    console.log("it's a tie!")
-    break;
+function hitOrPass(){
 
-    case player.total <= 21 && player.total > dealer.total:
-    console.log(player.name + " wins!")
-    break;
+  //something to ask the player what they would like to do (front end?)
+  //front end function adding prompt and two buttons
+  //depending on which one is clicked, something different will happen
+}
 
-    case dealer.total <= 21 && player.total < dealer.total:
-    console.log(dealer.name + " wins!")
-    break;
+function hitPlayer(){
+  addCard(player);
+  getTotal(player);
+}
 
-    case player.total > 21:
-    console.log(player.name + " busts")
-    break;
+function passPlayer(){
+  getTotal(dealer);
+  getTotal(dealer);
+  evaluateDealerTotal();
+}
 
-    case dealer.total > 21:
-    console.log(dealer.name + "busts")
-    break;
-
-    default:
-    console.log("help")
+function evaluateDealerTotal(){
+  if (dealer.total > 21){
+    console.log("bust")
+  }else if (dealer.total < 17){
+    dealerHit();
+  }else{
+    totalCompare();
   }
 }
 
 
-function hitPlayer(){
-  addCard(player);
-  getTotal(player);           //attach this to an event listener so when player 
-                              //hits "hit" button, there we go.
+function totalCompare(){
+  if (dealer.total === player.total){
+    console.log("tie");
+    neutralMonies();
+  }else if ()
+}
+
+//================================
+// options from switch statement
+//================================
+
+function hitDealer(){
+  addCard(dealer);
+  getTotal(dealer);
+  evaluateDealerTotal();
 }
 
 function winMonies(){
-
+  player.totalMonies = player.totalMonies + (player.bet * 2)
 }
 
 function loseMonies(){
+  player.totalMonies = player.totalMonies - player.bet
+}
 
+function neutralMonies(){
+  player.totalMonies = player.totalMonies + player.bet
 }
 
 function gamePlay(){
   initialCards();
   getTotal(player);
-  getTotal(dealer);
-  totalCompare();
+  evaluatePlayerTotal();
 }
 
 gamePlay();
-
-//just need something to check for a tie!!!!
-//and to add/subtract the monies
-
 
 
 
