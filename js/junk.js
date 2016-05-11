@@ -142,17 +142,23 @@ function addBetSubmitButton(){
 function obtainBet(){
   player.bet = $("#bet-box").val();
   player.totalMoney = player.totalMoney - player.bet;
+  addDeckImage();
 }
+
+function addDeckImage(){
+  $("#deck").append("<img src=images/back_card.jpg>")
+  $("img").attr("id", "deck-img")
+}
+
+$("#deck-img").click(gamePlay);
+
+
 
 function begin(){
   $("#start").click(startGame);
 }
 
 begin();
-
-function addDeck(){
-  
-}
 
 //=============================================
 // give the player and dealer their first card
@@ -307,6 +313,4 @@ function gamePlay(){
   getTotal(player);
   evaluatePlayerTotal();
 }
-
-gamePlay();
 
