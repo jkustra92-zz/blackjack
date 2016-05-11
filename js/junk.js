@@ -10,7 +10,7 @@
 
 
 // var suits = ["hearts", "clubs", "spades", "diamonds"];
-// var names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "King", "Queen", "Jack"];
+// var names = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "King", "Queen", "Jack", "Ace"];
 // var values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11];
 
 // console.log(suits);
@@ -18,7 +18,7 @@
 // console.log(values);
 
 
-// var deck = []
+// var deck = [];
 
 // function cardMaker(name, suit, value){
 // 	this.name = name,
@@ -36,10 +36,10 @@
 
 // console.log(deck);
 
-// suits.forEach(function(index, currentValue){
+// suits.forEach(function(currentValue){
 //   // console.log(suits[currentValue])
 //   for(var i = 0; i < names.length; i++){
-//     var cards = new cardMaker(names[i], suits[currentValue], values[i])
+//     var cards = new cardMaker(names[i], currentValue, values[i])
 //     deck.push(cards)
 //   }
 // })
@@ -82,11 +82,19 @@
 // }
 
 // function askForName(){
+//   addNameTextInput();
+//   addNameSubmitButton(); 
+// }
+
+// function addNameTextInput(){
 //   $("#start-screen").append("<p>");
 //   $("p").append("<input>")
 //   $("input").attr("id", "name-box")
 //   $("#name-box").attr("type","text");
 //   $("#name-box").attr("placeholder", "enter your name");
+// }
+
+// function addNameSubmitButton(){
 //   var $submitButton = $("<button>submit</button>");
 //   $submitButton.attr("id", "submit");
 //   $submitButton.attr("type", "submit")
@@ -100,12 +108,20 @@
 // }
 
 // function askForBet(){
+//   addBetTextInput();
+//   addBetSubmitButton();
+// }
+
+// function addBetTextInput(){
 //   $("p").remove();
 //   $("#start-screen").append("<p>");
 //   $("p").append("<input>")
 //   $("input").attr("id", "bet-box")
 //   $("#bet-box").attr("type","text");
 //   $("#bet-box").attr("placeholder", "enter your bet");
+// }
+
+// function addBetSubmitButton(){
 //   var $submitButton2 = $("<button>submit</button>");
 //   $submitButton2.attr("id", "submit2");
 //   $submitButton2.attr("type", "submit")
@@ -115,6 +131,7 @@
 
 // function obtainBet(){
 //   player.bet = $("#bet-box").val();
+//   player.totalMoney = player.totalMoney - player.bet;
 //   console.log(player);
 // }
 
@@ -122,8 +139,34 @@
 //   $("#start").click(startGame);
 // }
 
-begin();
+// begin();
 
-//===========================
-// 
-//===========================
+//=============================================
+// give the player and dealer their first card
+//=============================================
+
+//dealer gets card, player gets a card. dealer gets card,
+//player gets card----- if dealer has less than 17, has to keep
+//playing. player plays as they wish until they reach 21 or over.
+
+//if player < 21, then give them option to hit or pass. 
+// hit function to get one card.
+
+//make an object for the dealer
+//make properties for both dealer and player that are empty arrays to
+//push cards into. that way, i can use array.reduce();
+
+var currentPlayer = "player";
+var playerX = 0;
+var dealerX = 0;
+function initialCards(){
+  while(playerX !== 2 || dealerX !== 2){
+    if (currentPlayer === "player"){
+      ++playerX
+      currentPlayer = "dealer";
+    }else{
+      currentPlayer = "player";
+      ++dealerX;
+    }
+  }
+}
