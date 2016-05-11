@@ -73,12 +73,14 @@ var player = {
   name: "",
   totalMoney: 1000,
   bet: "",
-  cards: []
+  cards: [],
+  total: ""
 }
 
 var dealer = {
   name: "dealer mcdealerface",
-  cards: []
+  cards: [],
+  total: ""
 }
 
 // function startGame(){
@@ -180,8 +182,6 @@ function initialCards(){
       currentPlayer = player;
     }
   }
-  getTotal(currentPlayer);
-  totalCheck(currentPlayer);
 }
 
 function addCard(currentPlayer){ //can use this as the generic "get a card from the deck" function
@@ -205,28 +205,79 @@ function getTotal(currentPlayer){
   aceCheck(currentPlayer, total)
 }
 
-// totalCheck(player);
-// totalCheck(dealer);
+// getTotal(player);
+// getTotal(dealer);
 
 function aceCheck(currentPlayer, total){
   if (total > 21 && (currentPlayer["cards"][0]["suit"] === "ace" || currentPlayer["cards"][1]["suit"] === "ace")){
     var finalTotal = total - 10 //make the ace act as a one instead of an eleven
+    console.log(finalTotal)
+    currentPlayer.total = finalTotal
   }else{
     var finalTotal = total;
+    console.log(finalTotal)
+    currentPlayer.total = finalTotal
   }
 }
 
-function totalCheck(currentPlayer, finalTotal){
-  if (finalTotal < 21){
-    //player has the option to hit or pass (make two functions to bring up these buttons. more front end work.)
-    //add event listener that activates addCard function
-  }else{
-    //BUST. alert or whatever that says whether or not the player/dealer lost.
+function totalCompare(){
+  switch (true){
+
+    case player.total<21 && dealer.total<21:
+    console.log("keep playing!")
+    break;
+
+    case player.total === dealer.total:
+    console.log("it's a tie!")
+    break;
+
+    case player.total <= 21 && player.total > dealer.total:
+    console.log(player.name + " wins!")
+    break;
+
+    case dealer.total <= 21 && player.total < dealer.total:
+    console.log(dealer.name + " wins!")
+    break;
+
+    case player.total > 21:
+    console.log(player.name + " busts")
+    break;
+
+    case dealer.total > 21:
+    console.log(dealer.name + "busts")
+    break;
+
+    default:
+    console.log("help")
   }
 }
 
 
+function hitPlayer(){
+  addCard(player);
+  getTotal(player);           //attach this to an event listener so when player 
+                              //hits "hit" button, there we go.
+}
 
+function winMonies(){
+
+}
+
+function loseMonies(){
+
+}
+
+function gamePlay(){
+  initialCards();
+  getTotal(player);
+  getTotal(dealer);
+  totalCompare();
+}
+
+gamePlay();
+
+//just need something to check for a tie!!!!
+//and to add/subtract the monies
 
 
 
