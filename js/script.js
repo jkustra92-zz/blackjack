@@ -159,7 +159,7 @@ $(document).ready(function(){
   }
 
   function addDeckImage(){
-    $("#deck").append("<img src=images/back_card.jpg>")
+    $("#deck").append("<img src=images/backcard.jpg>")
     $("img").attr("id", "deck-img")
     $("#bet-box").hide();
     $("#submit2").hide(); 
@@ -198,7 +198,7 @@ $(document).ready(function(){
   }
 
   function displayPlayerCards(card){            // using the name and suit to correlate with the image names and set them 
-      var imgname = card.name + "_of_" + card.suit; //as attributes to the images that will be appended to both dealer and player divs.
+      var imgname = card.name + "of" + card.suit; //as attributes to the images that will be appended to both dealer and player divs.
       var playerCard = $("<img>").attr("src", "images/" + imgname + ".png").attr("display", "inline-block").attr("height", 250).attr("width", 172)
       $("#player-spot").append(playerCard)
   }
@@ -206,11 +206,11 @@ $(document).ready(function(){
   function displayDealerCards(card){
     // console.log(dealer["cards"].length)
     if (dealer["cards"].length === 1){  //function that makes the first card display the back of the card
-      var imgname = "back_card_vertical"
+      var imgname = "backcardvertical"
       var $dealerCard = $("<img>").attr("src", "images/" + imgname + ".jpg").attr("display", "inline-block").attr("height", 250).attr("width", 172).attr("id", "dealerfirst")
       $("#dealer-spot").append($dealerCard)
     }else{
-      var imgname = card.name + "_of_" + card.suit;
+      var imgname = card.name + "of" + card.suit;
       var $dealerCard = $("<img>").attr("src", "images/" + imgname + ".png").attr("display", "inline-block").attr("height", 250).attr("width", 172)
       $("#dealer-spot").append($dealerCard)
     }
@@ -218,7 +218,7 @@ $(document).ready(function(){
 
   function displayDealerFirstCard(index){ //function that reverses what's happening in the prior function
       console.log(dealer["cards"][0].name)
-      var imgname = dealer["cards"][0].name + "_of_" + dealer["cards"][0].suit;
+      var imgname = dealer["cards"][0].name + "of" + dealer["cards"][0].suit;
       var $dealerCard = $("<img>").attr("src", "images/" + imgname + ".png").attr("display", "inline-block").attr("height", 250).attr("width", 172)
       $("#dealerfirst").replaceWith($dealerCard)
   }
