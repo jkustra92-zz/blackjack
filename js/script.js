@@ -11,8 +11,8 @@ $(document).ready(function(){
 
 // console.log(suits);
 // console.log(names);
-// console.log(values);
-
+// console.log(values);                     //all the cards in the deck are objects made using a constructor function.
+                                                              
 
   var deck = [];
 
@@ -22,9 +22,9 @@ $(document).ready(function(){
     this.value = value
   }
 
-  suits.forEach(function(currentValue){
-    // console.log(suits[currentValue])
-    for(var i = 0; i < names.length; i++){
+  suits.forEach(function(currentValue){             //for each of the suits (see what i did here?), make thirteen cards with the names in the 
+    // console.log(suits[currentValue])             //names array with values corresponding to the loop value at i. could have used another for
+    for(var i = 0; i < names.length; i++){          //each, but ended up confusing myself greatly in the attempt.
       var cards = new cardMaker(names[i], currentValue, values[i])
       deck.push(cards)
     }
@@ -42,16 +42,16 @@ $(document).ready(function(){
           arr[i] = arr[j];
           arr[j] = temp;
       }
-      return arr; //returning bc i want to ensure that the main deck variable is overwritten with this shuffled one.
+      return arr; //returning bc i want to ensure that the global deck variable is overwritten with this shuffled one.
   }
 
-  shuffle(deck); ////////////
+  shuffle(deck);
 
 //===========================
 // getting player info
-//===========================
-
-  $("#start").click(startGame);
+//===========================               //all of these functions are so wonderfully self-explanatory. manipulating the DOM
+                                            //to set the gameplay mechanism up so that when the functions are called, something will
+  $("#start").click(startGame);             //actually happen in the browser. yay!
 
   var player = {
     name: "",
@@ -197,15 +197,15 @@ $(document).ready(function(){
     // console.log(currentPlayer["cards"])
   }
 
-  function displayPlayerCards(card){            //probably an unorthodox way to do this, but using the name and suit to correlate with the image names and set them as attributes to 
-      var imgname = card.name + "_of_" + card.suit; //the images that will be appended to both dealer and player divs.
+  function displayPlayerCards(card){            // using the name and suit to correlate with the image names and set them 
+      var imgname = card.name + "_of_" + card.suit; //as attributes to the images that will be appended to both dealer and player divs.
       var playerCard = $("<img>").attr("src", "images/" + imgname + ".png").attr("display", "inline-block").attr("height", 250).attr("width", 172)
       $("#player-spot").append(playerCard)
   }
 
   function displayDealerCards(card){
     // console.log(dealer["cards"].length)
-    if (dealer["cards"].length === 1){  //expression that makes the first card display the back of the card
+    if (dealer["cards"].length === 1){  //function that makes the first card display the back of the card
       var imgname = "back_card_vertical"
       var $dealerCard = $("<img>").attr("src", "images/" + imgname + ".jpg").attr("display", "inline-block").attr("height", 250).attr("width", 172).attr("id", "dealerfirst")
       $("#dealer-spot").append($dealerCard)
@@ -216,7 +216,7 @@ $(document).ready(function(){
     }
   }
 
-  function displayDealerFirstCard(index){
+  function displayDealerFirstCard(index){ //function that reverses what's happening in the prior function
       console.log(dealer["cards"][0].name)
       var imgname = dealer["cards"][0].name + "_of_" + dealer["cards"][0].suit;
       var $dealerCard = $("<img>").attr("src", "images/" + imgname + ".png").attr("display", "inline-block").attr("height", 250).attr("width", 172)
@@ -273,7 +273,7 @@ $(document).ready(function(){
     }
   }
 
-  function hitOrStayDisplay(){                    //makes the buttons.
+  function hitOrStayDisplay(){                    //makes the button holder.
     var $menu = $("<div>")
     $menu.attr("id", "menu")
     $menu.text("would you like to hit or stay?")
@@ -289,14 +289,14 @@ $(document).ready(function(){
     $("#stay-button").click(stayPlayer)
   }
   function addHitButton (){
-    var $hitButton = $("<button>hit</button>")
+    var $hitButton = $("<button>hit</button>")    //actually makes the buttons.
     $hitButton.attr("id", "hit-button")
     $hitButton.attr("display", "inline-block")
     $("#button-container").append($hitButton)
   }
 
   function addStayButton (){
-    var $stayButton = $("<button>stay</button>")
+    var $stayButton = $("<button>stay</button>")  //ditto.
     $stayButton.attr("id", "stay-button")
     $stayButton.attr("display", "inline-block")
     $("#button-container").append($stayButton)
