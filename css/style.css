@@ -4,6 +4,7 @@
 #start-screen {
   text-align: center;
   margin-left: 5em;
+  position: relative;
 }
 
 #instructions {
@@ -43,70 +44,23 @@
   right: 68px;
 }
 
-.unflipped {
+#player-info {
+  background-color: blue;
+  width: 250px;
+  height: 172px;
+  position: absolute;
+  top: -1.95px;
+  left: 0px;
+}
+
+#menu {
+  position: absolute;
+  top: 40px;
+  right: 150px;
+}
+
+/*.unflipped {
   background-image: url("/images/back_card_vertical.jpg");
   height: 250px;
   width: 172px;
-}
-
-#player1 {
-  background-color: blue;
-  height: 250px;
-  width: 172px;
-  position: absolute;
-}
-
-#player2 {
-  background-color: blue;
-  height: 250px;
-  width: 172px;
-  position: absolute;
-  left: 200px;
-}
-
-#player3 {
-  background-color: blue;
-  height: 250px;
-  width: 172px;
-  position: absolute;
-  left: 400px;
-}
-
-#player4 {
-  background-color: blue;
-  height: 250px;
-  width: 172px;
-  position: absolute;
-  left: 600px;
-}
-
-#dealer1 {
-  background-color: red;
-  height: 250px;
-  width: 172px;
-  position: absolute;
-  left: 600px;
-}
-
-#dealer2 {
-  background-color: red;
-  height: 250px;
-  width: 172px;
-  position: absolute;
-  left: 400px;
-}
-
-#dealer3 {
-  background-color: red;
-  height: 250px;
-  width: 172px;
-  position: absolute;
-  left: 200px;
-}
-
-#dealer4 {
-  background-color: red;
-  height: 250px;
-  width: 172px;
-  position: absolute;
-}
+}*/

@@ -259,38 +259,60 @@ function aceCheck(currentPlayer, total){
 function evaluatePlayerTotal(){
   if (player.total > 21){
     console.log("bust")
+    loseMonies();
+    console.log(player);
   }else{
-    hitOrStay();
+    hitOrStayDisplay();
   }
 }
 
-function hitOrStay(){
-  var $menu = $("<p>")
+function hitOrStayDisplay(){
+  var $menu = $("<div>")
   $menu.attr("id", "menu")
+  $menu.text("would you like to hit or stay?")
   $("#player-spot").append($menu)
+  var $buttonContainer = $("<p>")
+  // console.log($buttonContainer)
+  $buttonContainer.attr("id", "button-container")
+  // console.log($buttonContainer)
+  $("#menu").append($buttonContainer)
+  addHitButton();
+  addStayButton();
+  $("#hit-button").click(hitPlayer)
+  $("#stay-button").click(stayPlayer)
+}
+
+function addHitButton (){
   var $hitButton = $("<button>hit</button>")
   $hitButton.attr("id", "hit-button")
   $hitButton.attr("display", "inline-block")
-  $menu.append($hitButton)
+  $("#button-container").append($hitButton)
+}
+
+function addStayButton (){
   var $stayButton = $("<button>stay</button>")
   $stayButton.attr("id", "stay-button")
   $stayButton.attr("display", "inline-block")
-  $menu.append($stayButton)
+  $("#button-container").append($stayButton)
 }
 
 function hitPlayer(){
   addCard(player);
+  displayPlayerCards(player.cards[player.cards.length-1]);
   getTotal(player);
 }
 
-function passPlayer(){
+function stayPlayer(){
+  // console.log("no")
   getTotal(dealer);
   evaluateDealerTotal();
 }
 
 function evaluateDealerTotal(){
   if (dealer.total > 21){
-    console.log("bust")
+    console.log("dealer bust")
+    winMonies();
+    console.log(player);
   }else if (dealer.total < 17){
     hitDealer();
   }else{
@@ -300,21 +322,32 @@ function evaluateDealerTotal(){
 
 function hitDealer(){
   addCard(dealer);
+  displayDealerCards(dealer.cards[dealer.cards.length-1])
   getTotal(dealer);
   evaluateDealerTotal();
 }
 
 
 function compareTotals(){
-  if (dealer.total === player.total){
+  if (dealer.total > 21 && player.total > 21){
+    console.log("losers")
+    console.log(player)
+    console.log(player.totalMonies)
+  }else if (dealer.total === player.total){
     console.log("tie");
     neutralMonies();
+    console.log(player)
+    console.log(player.totalMonies)
   }else if (dealer.total > player.total){
     console.log("dealer wins");
     loseMonies();
+    console.log(player)
+    console.log(player.totalMonies)
   }else{
     console.log("player wins")
     winMonies();
+    console.log(player)
+    console.log(player.totalMonies)
   }
 }
 
