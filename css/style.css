@@ -1,4 +1,12 @@
-#start {
+h1 {
+  font-family: 'Megrim', cursive;
+  font-size: 40px;
+}
+
+body {
+  background-color: #0A612A;
+  color: white;
+  font-family: 'Roboto', sans-serif;
 }
 
 #start-screen {
@@ -21,14 +29,14 @@
 }
 
 #player-spot {
-  background-color: red;
+  background-color: #262524;
   width: 100%;
   height: 200px;
   position: relative;
 }
 
 #dealer-spot {
-  background-color: blue;
+  background-color: #0A612A;
   width: 100%;
   height: 200px;
   display: inline-block;
@@ -44,8 +52,8 @@
   right: 68px;
 }
 
-#player-info {
-  background-color: blue;
+#player-info-box {
+  background-color: transparent;
   width: 250px;
   height: 172px;
   position: absolute;

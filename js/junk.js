@@ -8,6 +8,7 @@
 // making the deck
 //===========================
 
+$(document).ready(function(){
 
 var suits = ["hearts", "clubs", "spades", "diamonds"];
 var names = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "King", "Queen", "Jack", "Ace"];
@@ -142,13 +143,43 @@ function addBetSubmitButton(){
 function obtainBet(){
   player.bet = $("#bet-box").val();
   player.totalMoney = player.totalMoney - player.bet;
+  addPlayerInfo();
   $("#instructions").text("click on the deck to begin")
   addDeckImage();
+}
+
+function addPlayerInfo(){
+  getPlayerName();
+  getPlayerMonies();
+  getPlayerBet();
+}
+
+function getPlayerName(){
+  var $playerName = $("<p>")
+  $playerName.attr("id", "player-name")
+  $playerName.text("name: " + player.name)
+  $("#player-info-box").append($playerName) 
+}
+
+function getPlayerMonies(){
+  var $playerMonies = $("<p>")
+  $playerMonies.attr("id", "player-monies")
+  $playerMonies.text("total money: " + "$" + player.totalMonies)
+  $("#player-info-box").append($playerMonies) 
+}
+
+function getPlayerBet(){
+  var $playerBet = $("<p>")
+  $playerBet.attr("id", "player-bet")
+  $playerBet.text("current bet: " + "$" + player.bet)
+  $("#player-info-box").append($playerBet)
 }
 
 function addDeckImage(){
   $("#deck").append("<img src=images/back_card.jpg>")
   $("img").attr("id", "deck-img")
+  $("#bet-box").hide();
+  $("#submit2").hide(); 
 }
 
 function begin(){
@@ -199,11 +230,6 @@ function addCard(currentPlayer){ //can use this as the generic "get a card from 
   currentPlayer["cards"].push(card)
   // console.log(currentPlayer["cards"])
 }
-
-// function displayInitialCards(){
-//   displayPlayerCards();
-//   // displayDealerCards();
-// }
 
 function displayPlayerCards(card){
     var imgname = card.name + "_of_" + card.suit;
@@ -258,7 +284,7 @@ function aceCheck(currentPlayer, total){
 
 function evaluatePlayerTotal(){
   if (player.total > 21){
-    console.log("bust")
+    $("#instructions").text("player busts")
     loseMonies();
     console.log(player);
   }else{
@@ -297,22 +323,26 @@ function addStayButton (){
 }
 
 function hitPlayer(){
+  $("#menu").hide();
+  $("#button-container").hide()
   addCard(player);
   displayPlayerCards(player.cards[player.cards.length-1]);
   getTotal(player);
+  evaluatePlayerTotal();
 }
 
 function stayPlayer(){
   // console.log("no")
+  $("#menu").hide();
+  $("#button-container").hide()
   getTotal(dealer);
   evaluateDealerTotal();
 }
 
 function evaluateDealerTotal(){
   if (dealer.total > 21){
-    console.log("dealer bust")
+    $("#instructions").text("dealer busts")
     winMonies();
-    console.log(player);
   }else if (dealer.total < 17){
     hitDealer();
   }else{
@@ -330,24 +360,17 @@ function hitDealer(){
 
 function compareTotals(){
   if (dealer.total > 21 && player.total > 21){
-    console.log("losers")
-    console.log(player)
-    console.log(player.totalMonies)
-  }else if (dealer.total === player.total){
-    console.log("tie");
     neutralMonies();
-    console.log(player)
-    console.log(player.totalMonies)
+    $("#instructions").text("you both suck")
+  }else if (dealer.total === player.total){
+    neutralMonies();
+    $("#instructions").text("it's a tie")
   }else if (dealer.total > player.total){
-    console.log("dealer wins");
     loseMonies();
-    console.log(player)
-    console.log(player.totalMonies)
+    $("#instructions").text("dealer wins")
   }else{
-    console.log("player wins")
     winMonies();
-    console.log(player)
-    console.log(player.totalMonies)
+    $("#instructions").text("player wins")
   }
 }
 
@@ -357,22 +380,41 @@ function compareTotals(){
 
 function winMonies(){
   player.totalMonies = player.totalMonies + (player.bet * 2)
+  newHand();
 }
 
 function loseMonies(){
   player.totalMonies = player.totalMonies - player.bet
+  newHand();
 }
 
 function neutralMonies(){
   player.totalMonies = player.totalMonies + player.bet
+  newHand();
 }
 
 function gamePlay(){
-  console.log("whyyyyy")
+  // console.log("whyyyyy")
   initialCards();
   getTotal(player);
   evaluatePlayerTotal();
 }
 
-// hitOrStay();
+//==================
+// replay functions
+//==================
+
+function newHand(){
+  console.log("i'm working!!!")
+  //this new hand function needs to tell the player to hit the new hand button
+  //new hand button function- removes reset button and replaces it with new hand button
+  //only when the player reaches the end of the game
+  //sets player and dealer arrays back to zero.
+  //bet screen reappears
+  //player's money and bet info is updated in the box
+  //then the box disappears again
+}
+
+
+})
 
