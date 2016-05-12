@@ -44,7 +44,7 @@ suits.forEach(function(currentValue){
   }
 })
 
-// console.log(deck.length);
+// console.log(deck);
 
 //===========================
 // shuffling the deck
@@ -142,6 +142,7 @@ function addBetSubmitButton(){
 function obtainBet(){
   player.bet = $("#bet-box").val();
   player.totalMoney = player.totalMoney - player.bet;
+  $("#instructions").text("click on the deck to begin")
   addDeckImage();
 }
 
@@ -150,13 +151,11 @@ function addDeckImage(){
   $("img").attr("id", "deck-img")
 }
 
-$("#deck-img").click(gamePlay);
-
-
-
 function begin(){
   $("#start").click(startGame);
 }
+
+$("#deck").click(gamePlay);
 
 begin();
 
@@ -184,10 +183,12 @@ var currentPlayer = player;
 function initialCards(){
   while(player["cards"].length !== 2 || dealer["cards"].length !== 2){
     if (currentPlayer === player){
-      addCard(currentPlayer)
+      addCard(currentPlayer);
+      displayPlayerCards(currentPlayer.cards[currentPlayer.cards.length-1]);
       currentPlayer = dealer;
     }else{
       addCard(currentPlayer);
+      displayDealerCards(currentPlayer.cards[currentPlayer.cards.length-1]);
       currentPlayer = player;
     }
   }
@@ -197,6 +198,23 @@ function addCard(currentPlayer){ //can use this as the generic "get a card from 
   var card = deck.pop();
   currentPlayer["cards"].push(card)
   // console.log(currentPlayer["cards"])
+}
+
+// function displayInitialCards(){
+//   displayPlayerCards();
+//   // displayDealerCards();
+// }
+
+function displayPlayerCards(card){
+    var imgname = card.name + "_of_" + card.suit;
+    var playerCard = $("<img>").attr("src", "images/" + imgname + ".png").attr("display", "inline-block").attr("height", 250).attr("width", 172)
+    $("#player-spot").append(playerCard)
+}
+
+function displayDealerCards(card){
+  var imgname = card.name + "_of_" + card.suit;
+  var dealerCard = $("<img>").attr("src", "images/" + imgname + ".png").attr("display", "inline-block").attr("height", 250).attr("width", 172)
+  $("#dealer-spot").append(dealerCard)
 }
 
 // initialCards();
@@ -247,9 +265,17 @@ function evaluatePlayerTotal(){
 }
 
 function hitOrStay(){
-  //something to ask the player what they would like to do (front end?)
-  //front end function adding prompt and two buttons
-  //depending on which one is clicked, something different will happen
+  var $menu = $("<p>")
+  $menu.attr("id", "menu")
+  $("#player-spot").append($menu)
+  var $hitButton = $("<button>hit</button>")
+  $hitButton.attr("id", "hit-button")
+  $hitButton.attr("display", "inline-block")
+  $menu.append($hitButton)
+  var $stayButton = $("<button>stay</button>")
+  $stayButton.attr("id", "stay-button")
+  $stayButton.attr("display", "inline-block")
+  $menu.append($stayButton)
 }
 
 function hitPlayer(){
@@ -309,8 +335,11 @@ function neutralMonies(){
 }
 
 function gamePlay(){
+  console.log("whyyyyy")
   initialCards();
   getTotal(player);
   evaluatePlayerTotal();
 }
+
+// hitOrStay();
 

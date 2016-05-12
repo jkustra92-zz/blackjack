@@ -1,9 +1,16 @@
 #start {
 }
 
-#start-screen{
+#start-screen {
   text-align: center;
   margin-left: 5em;
+}
+
+#instructions {
+  text-align: center;
+  width: 25%;
+  margin-left: 28em;
+  margin-bottom: 0.5em;
 }
 
 #game-container {
@@ -16,6 +23,7 @@
   background-color: red;
   width: 100%;
   height: 200px;
+  position: relative;
 }
 
 #dealer-spot {
@@ -24,22 +32,81 @@
   height: 200px;
   display: inline-block;
   position: relative;
-  margin-top: 3em;
-}
-
-#bank {
-  background-color: green;
-  height: 100px;
-  width: 100px;
-  display: inline-block;
-  margin-right: 53px;
+  margin-bottom: 3em;
 }
 
 #deck {
-  background-color: pink;
   height: 172px;
   width: 250px;
   position: absolute;
   top: 20px;
   right: 68px;
+}
+
+.unflipped {
+  background-image: url("/images/back_card_vertical.jpg");
+  height: 250px;
+  width: 172px;
+}
+
+#player1 {
+  background-color: blue;
+  height: 250px;
+  width: 172px;
+  position: absolute;
+}
+
+#player2 {
+  background-color: blue;
+  height: 250px;
+  width: 172px;
+  position: absolute;
+  left: 200px;
+}
+
+#player3 {
+  background-color: blue;
+  height: 250px;
+  width: 172px;
+  position: absolute;
+  left: 400px;
+}
+
+#player4 {
+  background-color: blue;
+  height: 250px;
+  width: 172px;
+  position: absolute;
+  left: 600px;
+}
+
+#dealer1 {
+  background-color: red;
+  height: 250px;
+  width: 172px;
+  position: absolute;
+  left: 600px;
+}
+
+#dealer2 {
+  background-color: red;
+  height: 250px;
+  width: 172px;
+  position: absolute;
+  left: 400px;
+}
+
+#dealer3 {
+  background-color: red;
+  height: 250px;
+  width: 172px;
+  position: absolute;
+  left: 200px;
+}
+
+#dealer4 {
+  background-color: red;
+  height: 250px;
+  width: 172px;
+  position: absolute;
 }
