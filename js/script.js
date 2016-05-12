@@ -1,17 +1,51 @@
 $(document).ready(function(){
 // console.log("hey, i'm working!")
 
-});
+//===========================
+// making the deck
+//===========================
 
-function makeCards(){ //use a couple arrays and a forEach to add all the required object key/value pairs. 
-                      //also use images (sprites?) and add ids to them to get the image. give them all a class
-                      //to show the back of the card before it is flipped. XXXXXX
-                      //as an object is made, push it into the deck array. eeeyyyyy.
-};
+var suits = ["hearts", "clubs", "spades", "diamonds"];
+var names = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "King", "Queen", "Jack", "Ace"];
+var values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11];
 
-function shuffleCards(){ //use Durstenfeld shuffle!! :D XXXX
+// console.log(suits);
+// console.log(names);
+// console.log(values);
 
-};
+
+var deck = [];
+
+function cardMaker(name, suit, value){
+  this.name = name,
+  this.suit = suit,
+  this.value = value
+}
+
+suits.forEach(function(currentValue){
+  // console.log(suits[currentValue])
+  for(var i = 0; i < names.length; i++){
+    var cards = new cardMaker(names[i], currentValue, values[i])
+    deck.push(cards)
+  }
+})
+
+//===========================
+// shuffling the deck
+//===========================
+
+function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        // console.log(j) //before i had an issue with numbers repeating themselves when i used "deck" as both argument and parameter
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    return arr; //returning bc i want to ensure that the main deck variable is overwritten with this shuffled one.
+}
+
+shuffle(deck);
 
 function startGame(){  //this could be where the player and dealer get their first cards?
                       //pop elements from deck array and push it into a player/dealer array, respectively??
@@ -32,3 +66,7 @@ function restartGame(){ //when restart button is clicked, do the thing.
 function blackJack(){ //overall encompassing function? maybe?
 
 }
+
+
+
+});

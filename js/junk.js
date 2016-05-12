@@ -72,7 +72,7 @@ shuffle(deck);
 
 var player = {
   name: "",
-  totalMonies: 1000,
+  totalMonies: 200,
   bet: "",
   cards: [],
   total: ""
@@ -88,7 +88,7 @@ function startGame(){
   $("#start").remove();
   $("#start-screen").append("<button>");
   $("button").attr("id", "reset").text("reset");                                                 
-  // $("#reset").click(restartGame);
+  $("#reset").click(restartGame);
   askForName();
 }
 
@@ -180,13 +180,12 @@ function addDeckImage(){
   $("img").attr("id", "deck-img")
   $("#bet-box").hide();
   $("#submit2").hide(); 
+  $("#deck").click(gamePlay);
 }
 
 function begin(){
   $("#start").click(startGame);
 }
-
-$("#deck").click(gamePlay);
 
 begin();
 
@@ -323,8 +322,8 @@ function addStayButton (){
 }
 
 function hitPlayer(){
-  $("#menu").hide();
-  $("#button-container").hide()
+  $("#menu").remove();
+  $("#button-container").remove()
   addCard(player);
   displayPlayerCards(player.cards[player.cards.length-1]);
   getTotal(player);
@@ -333,8 +332,8 @@ function hitPlayer(){
 
 function stayPlayer(){
   // console.log("no")
-  $("#menu").hide();
-  $("#button-container").hide()
+  $("#menu").remove();
+  $("#button-container").remove()
   getTotal(dealer);
   evaluateDealerTotal();
 }
@@ -380,21 +379,24 @@ function compareTotals(){
 
 function winMonies(){
   player.totalMonies = player.totalMonies + (player.bet * 2)
-  newHand();
+  window.setTimeout(function(){newHand()}, 4000);
+
 }
 
 function loseMonies(){
   player.totalMonies = player.totalMonies - player.bet
-  newHand();
+  window.setTimeout(function(){newHand()}, 4000);
 }
 
 function neutralMonies(){
   player.totalMonies = player.totalMonies + player.bet
-  newHand();
+  window.setTimeout(function(){newHand()}, 4000);
 }
 
 function gamePlay(){
   // console.log("whyyyyy")
+  $("#deck").off();
+  $("#instructions").text("")
   initialCards();
   getTotal(player);
   evaluatePlayerTotal();
@@ -405,16 +407,39 @@ function gamePlay(){
 //==================
 
 function newHand(){
-  console.log("i'm working!!!")
-  //this new hand function needs to tell the player to hit the new hand button
-  //new hand button function- removes reset button and replaces it with new hand button
-  //only when the player reaches the end of the game
-  //sets player and dealer arrays back to zero.
-  //bet screen reappears
-  //player's money and bet info is updated in the box
-  //then the box disappears again
+  $("#instructions").text("play again?")
+  $("#reset").remove()
+  var $yes = $("<button>yes</button>")
+  $yes.attr("id", "yes")
+  $("#start-screen").append($yes)
+  $("#player-bet").remove();
+  $("#player-monies").text("total money: " + "$" + player.totalMonies)
+  $("#yes").click(putCardsBack)
 }
 
+function putCardsBack(){
+  dealer["cards"] = []
+  player["cards"] = []
+  // console.log(dealer["cards"].length)
+  // console.log(player["cards"].length)
+  clearBoard();
+}
+
+function clearBoard(){
+  $("#bet-box").show();
+  $("#submit2").show();
+  $("#deck-img").remove();
+  $("#player-spot").empty();
+  $("#dealer-spot").empty();
+  $("#player-info-box").text("")
+  $("#instructions").text("enter your bet to continue");
+  $("#yes").attr("id", "reset")
+  $("#reset").text("reset")
+}
+
+function restartGame(){
+  location.reload();
+}
 
 })
 
