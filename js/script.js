@@ -6,7 +6,7 @@ $(document).ready(function(){
 //===========================
 
   var suits = ["hearts", "clubs", "spades", "diamonds"];
-  var names = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "King", "Queen", "Jack", "Ace"];
+  var names = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "king", "queen", "jack", "ace"];
   var values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11];
 
 // console.log(suits);
